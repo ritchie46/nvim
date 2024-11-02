@@ -29,7 +29,7 @@ end
 
 function ToggleLocal()
 	-- Check if the quickfix list is open
-	if vim.fn.getloclist({ winid = 0 }).winid ~= 0 then
+	if vim.fn.getloclist(0, { winid = 0 }).winid ~= 0 then
 		-- If it is open, close it
 		vim.cmd("lclose")
 	else

@@ -4,22 +4,31 @@
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
+
+-- Comment out code with CTRL+/
 vim.keymap.set("n", "<C-_>", "gcc", { remap = true })
 vim.keymap.set("v", "<C-_>", "gc", { remap = true })
-vim.keymap.set("i", "<S-Tab>", "<C-d>", { remap = true })
-vim.keymap.set("n", "<leader>e", ":NvimTreeOpen<CR>", { silent = true })
 
+-- Dedent code with SHIFT+TAB
+vim.keymap.set("i", "<S-Tab>", "<C-d>", { remap = true })
+
+-- NvimTree
+vim.keymap.set("n", "<leader>ee", ":NvimTreeToggle<CR>", { silent = true, desc = "Toggle file tree" })
+vim.keymap.set("n", "<leader>ef", ":NvimTreeFindFile!<CR>", { silent = true, desc = "Open at this file" })
+vim.keymap.set("n", "<leader>ec", ":NvimTreeCollapse<CR>", { silent = true, desc = "[C]ollapse all" })
 -- Diagnostic keymaps
 
 -- SET LOCAL LIST
-vim.keymap.set("n", "<leader>l", vim.diagnostic.setloclist, { desc = "Open diagnostic [L]ocal list" })
+-- vim.keymap.set("n", "<leader>l", vim.diagnostic.setloclist, { desc = "Open diagnostic [L]ocal list" })
 
 -- TOGGLE QUICKFIX
 -- vim.keymap.set("n", "<leader>q", vim.diagnostic.setqflist, { desc = "Open diagnostic [Q]uickfix list" })
 function ToggleQuickfix()
+	-- Ensure ll is closed
+	vim.cmd("lclose")
 	-- Check if the quickfix list is open
 	if vim.fn.getqflist({ winid = 0 }).winid ~= 0 then
-		-- If it is open, close it
+		-- If it is open, close it (and local list)
 		vim.cmd("cclose")
 	else
 		-- Populate the qfl with diagnostics
@@ -28,9 +37,11 @@ function ToggleQuickfix()
 end
 
 function ToggleLocal()
-	-- Check if the quickfix list is open
+	-- Ensure qfl is closed
+	vim.cmd("cclose")
+	-- Check if the local list is open
 	if vim.fn.getloclist(0, { winid = 0 }).winid ~= 0 then
-		-- If it is open, close it
+		-- If it is open, close it (and quicklist)
 		vim.cmd("lclose")
 	else
 		-- Populate the qfl with diagnostics
@@ -46,7 +57,7 @@ vim.api.nvim_set_keymap(
 )
 vim.api.nvim_set_keymap(
 	"n",
-	"<leader>q",
+	"<leader>l",
 	":lua ToggleLocal()<CR>",
 	{ noremap = true, silent = true, desc = "Open diagnostic [L]ocal list" }
 )

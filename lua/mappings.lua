@@ -11,6 +11,11 @@ vim.keymap.set("v", "<C-_>", "gc", { remap = true })
 
 -- Dedent code with SHIFT+TAB
 vim.keymap.set("i", "<S-Tab>", "<C-d>", { remap = true })
+vim.keymap.set("i", "<S-Tab>", "<C-d>", { remap = true })
+
+-- Tab + Shift-tab indent/dedent in visual blocks and keep selection
+vim.keymap.set("x", "<S-Tab>", "<gv", { noremap = true, silent = true })
+vim.keymap.set("x", "<Tab>", ">gv", { noremap = true, silent = true })
 
 -- NvimTree
 vim.keymap.set("n", "<leader>ee", ":NvimTreeToggle<CR>", { silent = true, desc = "Toggle file tree" })
@@ -23,42 +28,34 @@ vim.keymap.set("n", "<leader>ec", ":NvimTreeCollapse<CR>", { silent = true, desc
 
 -- TOGGLE QUICKFIX
 -- vim.keymap.set("n", "<leader>q", vim.diagnostic.setqflist, { desc = "Open diagnostic [Q]uickfix list" })
-function ToggleQuickfix()
-	-- Ensure ll is closed
-	vim.cmd("lclose")
-	-- Check if the quickfix list is open
-	if vim.fn.getqflist({ winid = 0 }).winid ~= 0 then
-		-- If it is open, close it (and local list)
-		vim.cmd("cclose")
-	else
-		-- Populate the qfl with diagnostics
-		vim.diagnostic.setqflist()
+function OpenQuickfix(severity)
+	local severities = { vim.diagnostic.severity.ERROR, vim.diagnostic.severity.WARN }
+	for _, sev in ipairs(severities) do
+		local diagnostics = vim.diagnostic.get(nil, { severity = sev })
+		if #diagnostics > 0 then
+			vim.diagnostic.setqflist({ open = true, severity = sev })
+			return
+		end
 	end
 end
 
-function ToggleLocal()
+function OpenLocal()
 	-- Ensure qfl is closed
 	vim.cmd("cclose")
-	-- Check if the local list is open
-	if vim.fn.getloclist(0, { winid = 0 }).winid ~= 0 then
-		-- If it is open, close it (and quicklist)
-		vim.cmd("lclose")
-	else
-		-- Populate the qfl with diagnostics
-		vim.diagnostic.setloclist()
-	end
+	-- Populate the qfl with diagnostics
+	vim.diagnostic.setloclist()
 end
 
 vim.api.nvim_set_keymap(
 	"n",
 	"<leader>q",
-	":lua ToggleQuickfix()<CR>",
+	":lua OpenQuickfix()<CR>",
 	{ noremap = true, silent = true, desc = "Open diagnostic [Q]uickfix list" }
 )
 vim.api.nvim_set_keymap(
 	"n",
 	"<leader>l",
-	":lua ToggleLocal()<CR>",
+	":lua OpenLocal()<CR>",
 	{ noremap = true, silent = true, desc = "Open diagnostic [L]ocal list" }
 )
 

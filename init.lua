@@ -89,17 +89,19 @@ require("plugins")
 
 -- vim.cmd("colorscheme solarized")
 -- vim.o.background = "light"
+-- vim.api.nvim_set_hl(0, "NonText", { bg = "none", fg = "#6c6c6c" })
 
 -- Rust-analyzer
 local lspconfig = require("lspconfig")
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 local on_attach = function(client, bufnr)
 	vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 end
 
-vim.api.nvim_set_hl(0, "NonText", { bg = "none", fg = "#6c6c6c" })
 lspconfig.rust_analyzer.setup({
 	on_attach = on_attach,
+	capabilities = capabilities,
 	settings = {
 		["rust-analyzer"] = {
 			imports = {
@@ -112,6 +114,8 @@ lspconfig.rust_analyzer.setup({
 				buildscripts = {
 					enable = true,
 				},
+				features = "all",
+				loadOutDirsFromCheck = true,
 			},
 			procmacro = {
 				enable = true,
@@ -119,9 +123,12 @@ lspconfig.rust_analyzer.setup({
 			workspace = {
 				symbol = {
 					search = {
-						scopre = "workspace",
+						scope = "workspace",
 					},
 				},
+			},
+			completion = {
+				autoimport = { enable = true },
 			},
 		},
 	},

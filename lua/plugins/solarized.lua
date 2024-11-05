@@ -62,7 +62,7 @@ return {
 		vim.api.nvim_set_hl(0, "@lsp.type.method", { fg = base_color })
 		vim.api.nvim_set_hl(0, "@lsp.mod.static", { fg = base_color })
 		vim.api.nvim_set_hl(0, "@lsp.type.decorator", { fg = base_color })
-		vim.api.nvim_set_hl(0, "@lsp.typemod.method.reference", { fg = base_color })
+		vim.api.nvim_set_hl(0, "@lsp.type.method.reference", { fg = base_color })
 		vim.api.nvim_set_hl(0, "@lsp.typemod.method.library", { fg = base_color })
 		vim.api.nvim_set_hl(0, "NonText", { bg = "none", fg = base_color })
 
@@ -74,6 +74,7 @@ return {
 
 		-- GREEN
 		vim.api.nvim_set_hl(0, "@variable.Builtin", { fg = colors.green })
+		vim.api.nvim_set_hl(0, "@module.rust", { fg = colors.green })
 
 		-- CYAN
 		vim.api.nvim_set_hl(0, "@lsp.type.lifetime.rust", { fg = colors.cyan })
@@ -89,5 +90,12 @@ return {
 		vim.api.nvim_set_hl(0, "@lsp.type.method.declaration", { fg = colors.magenta })
 		vim.api.nvim_set_hl(0, "@lsp.typemod.method.declaration", { fg = colors.magenta })
 		vim.api.nvim_set_hl(0, "@lsp.typemod.function.declaration", { fg = colors.magenta })
+
+		-- TODO:
+		-- nvim_set_hl('DiagnosticError', { fg = colors.diag_error })
+		-- nvim_set_hl('DiagnosticWarn', { fg = colors.diag_warning })
+		-- nvim_set_hl('DiagnosticInfo', { fg = colors.diag_info })
+		-- nvim_set_hl('DiagnosticHint', { fg = colors.diag_hint })
+		-- nvim_set_hl('DiagnosticOk', { fg = colors.diag_ok })
 	end,
 }

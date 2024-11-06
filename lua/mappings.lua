@@ -29,6 +29,7 @@ vim.keymap.set("n", "<leader>ec", ":NvimTreeCollapse<CR>", { silent = true, desc
 -- TOGGLE QUICKFIX
 -- vim.keymap.set("n", "<leader>q", vim.diagnostic.setqflist, { desc = "Open diagnostic [Q]uickfix list" })
 function OpenQuickfix(severity)
+	vim.cmd("cclose")
 	local severities = { vim.diagnostic.severity.ERROR, vim.diagnostic.severity.WARN }
 	for _, sev in ipairs(severities) do
 		local diagnostics = vim.diagnostic.get(nil, { severity = sev })
@@ -40,8 +41,7 @@ function OpenQuickfix(severity)
 end
 
 function OpenLocal()
-	-- Ensure qfl is closed
-	vim.cmd("cclose")
+	vim.cmd("lclose")
 	-- Populate the qfl with diagnostics
 	vim.diagnostic.setloclist()
 end

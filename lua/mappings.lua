@@ -52,12 +52,15 @@ vim.api.nvim_set_keymap(
 	":lua OpenQuickfix()<CR>",
 	{ noremap = true, silent = true, desc = "Open diagnostic [Q]uickfix list" }
 )
+vim.keymap.set("n", "<leader>Q", ":cclose<CR>", { noremap = true, silent = true, desc = "Close quickfix list" })
+
 vim.api.nvim_set_keymap(
 	"n",
 	"<leader>l",
 	":lua OpenLocal()<CR>",
 	{ noremap = true, silent = true, desc = "Open diagnostic [L]ocal list" }
 )
+vim.keymap.set("n", "<leader>Q", ":cclose<CR>", { noremap = true, silent = true, desc = "Close quickfix list" })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which

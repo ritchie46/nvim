@@ -141,6 +141,9 @@ return {
 		--  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+		local on_attach_rust = function(client, bufnr)
+			vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+		end
 
 		-- Enable the following language servers
 		--  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -156,6 +159,7 @@ return {
 			-- clangd = {},
 			-- gopls = {},
 			pylsp = {
+				capabilities = capabilities,
 				settings = {
 					plugins = {
 						pycodestyle = {
@@ -164,7 +168,43 @@ return {
 					},
 				},
 			},
-			-- rust_analyzer = {},
+			rust_analyzer = {
+				on_attach = on_attach_rust,
+				capabilities = capabilities,
+				settings = {
+					["rust-analyzer"] = {
+						inlayHints = {
+							chainingHints = { enable = false },
+						},
+						imports = {
+							granularity = {
+								group = "module",
+							},
+							prefix = "self",
+						},
+						cargo = {
+							buildscripts = {
+								enable = true,
+							},
+							features = "all",
+							loadOutDirsFromCheck = true,
+						},
+						procmacro = {
+							enable = true,
+						},
+						workspace = {
+							symbol = {
+								search = {
+									scope = "workspace",
+								},
+							},
+						},
+						completion = {
+							autoimport = { enable = true },
+						},
+					},
+				},
+			},
 			-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
 			--
 			-- Some languages (like typescript) have entire language plugins that can be useful:

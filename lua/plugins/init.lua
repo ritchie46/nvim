@@ -24,6 +24,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	-- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
 	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
+	"petertriho/nvim-scrollbar",
 	require("plugins/solarized"), -- Solarized theme
 	require("plugins/gitsigns"),
 	require("plugins/which-key"),
@@ -166,5 +167,18 @@ require("lazy").setup({
 			task = "📌",
 			lazy = "💤 ",
 		},
+	},
+})
+require("scrollbar").setup()
+local utils = require("solarized.utils")
+local colors = utils.get_colors()
+
+require("scrollbar").setup({
+	handle = {
+		color = colors.base00,
+	},
+	marks = {
+		Error = { color = colors.magenta },
+		Warn = { color = colors.yellow },
 	},
 })

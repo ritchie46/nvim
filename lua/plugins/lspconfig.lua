@@ -188,6 +188,8 @@ return {
 							},
 							features = "all",
 							loadOutDirsFromCheck = true,
+							-- prevents cache invalidation and blocking cargo check at the expense of more data in /target
+							targetDir = true,
 						},
 						procmacro = {
 							enable = true,

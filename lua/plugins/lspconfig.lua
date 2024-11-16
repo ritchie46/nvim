@@ -161,9 +161,15 @@ return {
 			pylsp = {
 				capabilities = capabilities,
 				settings = {
-					plugins = {
-						pycodestyle = {
-							maxLineLength = 88,
+					["pylsp"] = {
+						plugins = {
+							mccabe = {
+								enabled = false,
+							},
+							pycodestyle = {
+								maxLineLength = 88,
+								ignore = { "E501", "W503" },
+							},
 						},
 					},
 				},

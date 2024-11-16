@@ -14,8 +14,8 @@ vim.keymap.set("i", "<S-Tab>", "<C-d>", { remap = true })
 vim.keymap.set("i", "<S-Tab>", "<C-d>", { remap = true })
 
 -- Diagnostic
-vim.keymap.set("n", "<]c>", ":cnext", { silent = true, desc = "Jump to next item in Quickfix list" })
-vim.keymap.set("n", "<[c>", ":cprevious", { silent = true, desc = "Jump to previous item in Quickfix list" })
+vim.keymap.set("n", "]c", ":cnext<CR>", { silent = true, desc = "Jump to next item in Quickfix list" })
+vim.keymap.set("n", "[c", ":cprevious<CR>", { silent = true, desc = "Jump to previous item in Quickfix list" })
 
 -- Tab + Shift-tab indent/dedent in visual blocks and keep selection
 vim.keymap.set("x", "<S-Tab>", "<gv", { noremap = true, silent = true })
@@ -33,7 +33,7 @@ vim.keymap.set("n", "<leader>ec", ":NvimTreeCollapse<CR>", { silent = true, desc
 -- TOGGLE QUICKFIX
 -- vim.keymap.set("n", "<leader>q", vim.diagnostic.setqflist, { desc = "Open diagnostic [Q]uickfix list" })
 function OpenQuickfix(severity)
-	vim.cmd("qclose")
+	vim.cmd("cclose")
 	local severities = { vim.diagnostic.severity.ERROR, vim.diagnostic.severity.WARN }
 	for _, sev in ipairs(severities) do
 		local diagnostics = vim.diagnostic.get(nil, { severity = sev })

@@ -14,8 +14,8 @@ vim.keymap.set("i", "<S-Tab>", "<C-d>", { remap = true })
 vim.keymap.set("i", "<S-Tab>", "<C-d>", { remap = true })
 
 -- Diagnostic
-vim.keymap.set("n", "]c", ":cnext<CR>", { silent = true, desc = "Jump to next item in Quickfix list" })
-vim.keymap.set("n", "[c", ":cprevious<CR>", { silent = true, desc = "Jump to previous item in Quickfix list" })
+vim.keymap.set("n", "]q", ":cnext<CR>", { silent = true, desc = "Jump to next item in Quickfix list" })
+vim.keymap.set("n", "[q", ":cprevious<CR>", { silent = true, desc = "Jump to previous item in Quickfix list" })
 
 -- Tab + Shift-tab indent/dedent in visual blocks and keep selection
 vim.keymap.set("x", "<S-Tab>", "<gv", { noremap = true, silent = true })
@@ -88,3 +88,10 @@ vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left wind
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+
+-- Buffers
+vim.keymap.set("n", "<C-Right>", ":BufferLineCycleNext<CR>", { desc = "Toggle next buffer" })
+vim.keymap.set("n", "<C-Left>", ":BufferLineCyclePrev<CR>", { desc = "Toggle previous buffer" })
+vim.keymap.set("n", "<leader>bcl", ":BufferLineCloseLeft<CR>", { desc = "Toggle previous buffer" })
+vim.keymap.set("n", "<leader>bcr", ":BufferLineCloseRight<CR>", { desc = "Toggle previous buffer" })
+vim.keymap.set("n", "<leader>bco", ":BufferLineCloseOthers<CR>", { desc = "Toggle previous buffer" })

@@ -32,6 +32,12 @@ require("lazy").setup({
 	require("plugins/conform"), -- Autoformat
 	require("plugins/nvim-cmp"), -- AutoCompletion
 	require("plugins/treesitter"), -- Highlight, edit, and navigate code
+	require("plugins/bufferline"), -- Visual Tabs (buffers)
+	{
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		config = true,
+	}, -- Autocomplete brackets
 	require("plugins/nvim-tree"),
 	{
 		"ray-x/lsp_signature.nvim",

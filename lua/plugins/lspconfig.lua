@@ -170,7 +170,7 @@ return {
 							},
 							pycodestyle = {
 								maxLineLength = 88,
-								ignore = { "E501", "W503" },
+								ignore = { "E501", "W503", "E306" },
 							},
 						},
 					},
@@ -194,7 +194,7 @@ return {
 							buildscripts = {
 								enable = true,
 							},
-							features = "all",
+							-- features = "all",
 							loadOutDirsFromCheck = true,
 							-- prevents cache invalidation and blocking cargo check at the expense of more data in /target
 							targetDir = true,

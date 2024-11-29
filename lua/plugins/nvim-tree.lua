@@ -43,6 +43,10 @@ return {
 				adaptive_size = true,
 			},
 			filters = { dotfiles = false },
+			renderer = {
+				highlight_opened_files = "all",
+				high_light_modified = "all",
+			},
 		})
 	end,
 }

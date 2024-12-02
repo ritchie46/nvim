@@ -45,7 +45,7 @@ return {
 			filters = { dotfiles = false },
 			renderer = {
 				highlight_opened_files = "all",
-				high_light_modified = "all",
+				highlight_modified = "all",
 			},
 		})
 	end,

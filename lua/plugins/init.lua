@@ -33,6 +33,10 @@ require("lazy").setup({
 	require("plugins/nvim-cmp"), -- AutoCompletion
 	require("plugins/treesitter"), -- Highlight, edit, and navigate code
 	require("plugins/bufferline"), -- Visual Tabs (buffers)
+	require("plugins/oil"), -- File explorer
+	{
+		"kevinhwang91/nvim-bqf",
+	}, -- Better looking quickfixlist
 	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",

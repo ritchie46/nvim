@@ -87,5 +87,40 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 require("plugins")
 
+-- Performance: disable builtin plugins:
+local builtin_plugs = {
+	"2html_plugin",
+	"tohtml",
+	"getscript",
+	"getscriptPlugin",
+	"gzip",
+	"logipat",
+	"netrw",
+	"netrwPlugin",
+	"netrwSettings",
+	"netrwFileHandlers",
+	"matchit",
+	"tar",
+	"tarPlugin",
+	"rrhelper",
+	"spellfile_plugin",
+	"vimball",
+	"vimballPlugin",
+	"zip",
+	"zipPlugin",
+	"tutor",
+	"rplugin",
+	"syntax",
+	"synmenu",
+	"optwin",
+	"compiler",
+	"bugreport",
+	"ftplugin",
+}
+
+for i = 1, #builtin_plugs do
+	vim.g["loaded_" .. builtin_plugs[i]] = true
+end
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

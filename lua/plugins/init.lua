@@ -60,6 +60,16 @@ require("lazy").setup({
 	require("plugins/lspconfig"),
 	{ "Bilal2453/luvit-meta", lazy = true }, -- type defnitions for luvit
 	{
+		"nvim-treesitter/nvim-treesitter-context",
+		config = function(_, _)
+			require("treesitter-context").setup({
+				separator = "-",
+				mode = "topline",
+				max_lines = 4,
+			})
+		end,
+	}, --See function Context
+	{
 		-- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
 		-- used for completion, annotations and signatures of Neovim apis
 		"folke/lazydev.nvim",

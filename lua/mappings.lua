@@ -68,7 +68,7 @@ vim.keymap.set("n", "<leader>Q", ":cclose<CR>", { noremap = true, silent = true,
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
--- is not what someone will guess without a bit more experience.
+-- is not what soGmeone will guess without a bit more experience.
 --
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
@@ -95,3 +95,14 @@ vim.keymap.set("n", "<C-Left>", ":BufferLineCyclePrev<CR>", { desc = "Toggle pre
 vim.keymap.set("n", "<leader>bcl", ":BufferLineCloseLeft<CR>", { desc = "Toggle previous buffer" })
 vim.keymap.set("n", "<leader>bcr", ":BufferLineCloseRight<CR>", { desc = "Toggle previous buffer" })
 vim.keymap.set("n", "<leader>bco", ":BufferLineCloseOthers<CR>", { desc = "Toggle previous buffer" })
+
+--Marks
+vim.keymap.set("n", "m1", "mA")
+vim.keymap.set("n", "m2", "mB")
+vim.keymap.set("n", "m3", "mC")
+vim.keymap.set("n", "m4", "mD")
+
+vim.keymap.set("n", "<leader>m1", "'A")
+vim.keymap.set("n", "<leader>m2", "'B")
+vim.keymap.set("n", "<leader>m3", "'C")
+vim.keymap.set("n", "<leader>m4", "'D")

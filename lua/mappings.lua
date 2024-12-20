@@ -32,7 +32,7 @@ vim.keymap.set("n", "<leader>ec", ":NvimTreeCollapse<CR>", { silent = true, desc
 
 -- TOGGLE QUICKFIX
 -- vim.keymap.set("n", "<leader>q", vim.diagnostic.setqflist, { desc = "Open diagnostic [Q]uickfix list" })
-function OpenQuickfix(severity)
+function OpenQuickfix(severities)
 	vim.cmd("cclose")
 	local severities = { vim.diagnostic.severity.ERROR, vim.diagnostic.severity.WARN }
 	for _, sev in ipairs(severities) do
@@ -44,6 +44,16 @@ function OpenQuickfix(severity)
 	end
 end
 
+function OpenQuickfixDefault()
+	local s = vim.diagnostic.severity
+	OpenQuickfix({ s.ERROR, s.WARN })
+end
+
+function OpenQuickfixVerbose()
+	local s = vim.diagnostic.severity
+	OpenQuickfix({ s.ERROR, s.WARN, s.INFO, s.HINT })
+end
+
 function OpenLocal()
 	vim.cmd("lclose")
 	-- Populate the qfl with diagnostics
@@ -53,10 +63,15 @@ end
 vim.api.nvim_set_keymap(
 	"n",
 	"<leader>q",
-	":lua OpenQuickfix()<CR>",
+	":lua OpenQuickfixDefault()<CR>",
 	{ noremap = true, silent = true, desc = "Open diagnostic [Q]uickfix list" }
 )
-vim.keymap.set("n", "<leader>Q", ":cclose<CR>", { noremap = true, silent = true, desc = "Close quickfix list" })
+vim.api.nvim_set_keymap(
+	"n",
+	"<leader>Q",
+	":lua OpenQuickfixVerbose()<CR>",
+	{ noremap = true, silent = true, desc = "Open diagnostic [Q]uickfix list (verbose)" }
+)
 
 vim.api.nvim_set_keymap(
 	"n",
@@ -64,7 +79,6 @@ vim.api.nvim_set_keymap(
 	":lua OpenLocal()<CR>",
 	{ noremap = true, silent = true, desc = "Open diagnostic [L]ocal list" }
 )
-vim.keymap.set("n", "<leader>Q", ":cclose<CR>", { noremap = true, silent = true, desc = "Close quickfix list" })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which

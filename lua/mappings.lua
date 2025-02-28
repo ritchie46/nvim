@@ -17,6 +17,9 @@ vim.keymap.set("i", "<S-Tab>", "<C-d>", { remap = true })
 vim.keymap.set("n", "]q", ":cnext<CR>", { silent = true, desc = "Jump to next item in Quickfix list" })
 vim.keymap.set("n", "[q", ":cprevious<CR>", { silent = true, desc = "Jump to previous item in Quickfix list" })
 
+vim.keymap.set("n", "]l", ":lnext<CR>", { silent = true, desc = "Jump to next item in Local list" })
+vim.keymap.set("n", "[l", ":lprevious<CR>", { silent = true, desc = "Jump to previous item in Local list" })
+
 -- Tab + Shift-tab indent/dedent in visual blocks and keep selection
 vim.keymap.set("x", "<S-Tab>", "<gv", { noremap = true, silent = true })
 vim.keymap.set("x", "<Tab>", ">gv", { noremap = true, silent = true })

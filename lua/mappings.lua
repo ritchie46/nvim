@@ -109,8 +109,8 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper win
 -- Buffers
 vim.keymap.set("n", "<C-Right>", ":BufferLineCycleNext<CR>", { desc = "Toggle next buffer" })
 vim.keymap.set("n", "<C-Left>", ":BufferLineCyclePrev<CR>", { desc = "Toggle previous buffer" })
-vim.keymap.set("n", "<leader>bcl", ":BufferLineCloseLeft<CR>", { desc = "Toggle previous buffer" })
-vim.keymap.set("n", "<leader>bcr", ":BufferLineCloseRight<CR>", { desc = "Toggle previous buffer" })
+vim.keymap.set("n", "<leader>bcl", ":BufferLineCloseLeft<CR>", { desc = "Close all buffers to the left" })
+vim.keymap.set("n", "<leader>bcr", ":BufferLineCloseRight<CR>", { desc = "Close all buffers to the right" })
 vim.keymap.set("n", "<leader>bco", ":BufferLineCloseOthers<CR>", { desc = "Toggle previous buffer" })
 
 --Marks
